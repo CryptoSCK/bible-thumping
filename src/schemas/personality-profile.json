@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Personality Profile",
+  "description": "Comprehensive schema for representing a user's personality profile",
+  "required": ["id", "basicInfo", "personalityTraits"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the personality profile",
+      "minLength": 1
+    },
+    "basicInfo": {
+      "type": "object",
+      "description": "Basic demographic and contact information",
+      "required": ["name", "age", "gender"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 150
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "non-binary", "other", "prefer not to say"]
+        },
+        "contactPreferences": {
+          "type": "object",
+          "properties": {
+            "communicationChannels": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["email", "phone", "chat", "video", "text"]
+              }
+            },
+            "language": {
+              "type": "string",
+              "description": "Preferred communication language"
+            }
+          }
+        }
+      }
+    },
+    "personalityTraits": {
+      "type": "object",
+      "description": "Detailed personality trait assessment",
+      "properties": {
+        "bigFive": {
+          "type": "object",
+          "properties": {
+            "openness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10
+            },
+            "conscientiousness": {
+              "type": "number", 
+              "minimum": 0,
+              "maximum": 10
+            },
+            "extraversion": {
+              "type": "number",
+              "minimum": 0, 
+              "maximum": 10
+            },
+            "agreeableness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10
+            },
+            "neuroticism": {
+              "type": "number", 
+              "minimum": 0,
+              "maximum": 10
+            }
+          }
+        },
+        "communicationStyle": {
+          "type": "string",
+          "enum": ["direct", "diplomatic", "analytical", "empathetic", "collaborative"]
+        }
+      }
+    },
+    "interactionPreferences": {
+      "type": "object",
+      "properties": {
+        "conversationTopics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "learningStyle": {
+          "type": "string", 
+          "enum": ["visual", "auditory", "kinesthetic", "reading/writing"]
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional custom metadata",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
