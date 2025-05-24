@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Configuration files
+*.config.js
+
+# Test files
+**/*.test.ts
+**/*.spec.ts
+
+# Other ignores
+.git/
+.vscode/
+.idea/
