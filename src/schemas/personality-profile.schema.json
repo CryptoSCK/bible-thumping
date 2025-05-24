@@ -1,0 +1,133 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Personality Profile",
+    "description": "A comprehensive schema for defining personality profiles in a multi-agent chatbot platform",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "Unique identifier for the personality profile",
+            "pattern": "^[a-z0-9-]{8,36}$"
+        },
+        "name": {
+            "type": "string",
+            "description": "Name of the personality",
+            "minLength": 2,
+            "maxLength": 50
+        },
+        "description": {
+            "type": "string",
+            "description": "Brief description of the personality",
+            "maxLength": 500
+        },
+        "traits": {
+            "type": "object",
+            "description": "Key personality traits and their intensities",
+            "properties": {
+                "openness": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Openness to experience (0-10)"
+                },
+                "conscientiousness": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Level of organization and goal-directedness (0-10)"
+                },
+                "extraversion": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Social energy and interaction preference (0-10)"
+                },
+                "agreeableness": {
+                    "type": "number", 
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Tendency towards cooperation and empathy (0-10)"
+                },
+                "neuroticism": {
+                    "type": "number",
+                    "minimum": 0, 
+                    "maximum": 10,
+                    "description": "Emotional stability and reactivity (0-10)"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["openness", "conscientiousness", "extraversion", "agreeableness", "neuroticism"]
+        },
+        "conversationStyles": {
+            "type": "array",
+            "description": "Conversation styles and communication preferences",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "formal", 
+                    "casual", 
+                    "technical", 
+                    "empathetic", 
+                    "direct", 
+                    "humorous", 
+                    "philosophical"
+                ]
+            },
+            "maxItems": 3
+        },
+        "knowledgeDomains": {
+            "type": "array",
+            "description": "Areas of expertise or knowledge",
+            "items": {
+                "type": "string"
+            },
+            "maxItems": 5
+        },
+        "languagePreferences": {
+            "type": "object",
+            "description": "Language and communication preferences",
+            "properties": {
+                "primaryLanguage": {
+                    "type": "string",
+                    "description": "Primary language code"
+                },
+                "additionalLanguages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "maxItems": 3
+                }
+            },
+            "required": ["primaryLanguage"]
+        },
+        "interactionConstraints": {
+            "type": "object",
+            "description": "Constraints and guidelines for interaction",
+            "properties": {
+                "tone": {
+                    "type": "string",
+                    "enum": ["professional", "friendly", "academic", "playful"]
+                },
+                "responsiveness": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "How quickly and enthusiastically the agent responds (0-10)"
+                }
+            }
+        },
+        "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of profile creation"
+        },
+        "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$",
+            "description": "Semantic versioning of the personality profile"
+        }
+    },
+    "required": ["id", "name", "traits", "createdAt", "version"],
+    "additionalProperties": false
+}
