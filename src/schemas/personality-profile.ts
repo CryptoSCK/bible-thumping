@@ -1,4 +1,5 @@
-import Ajv from 'ajv';
+import Ajv, { JSONSchemaType } from 'ajv';
+import addFormats from 'ajv-formats';
 import personalityProfileSchema from './personality-profile.schema.json';
 
 export interface PersonalityProfile {
@@ -26,8 +27,10 @@ export interface PersonalityProfile {
     version: string;
 }
 
-const ajv = new Ajv();
-const validate = ajv.compile(personalityProfileSchema);
+const ajv = new Ajv({ strict: true });
+addFormats(ajv);
+
+const validate = ajv.compile(personalityProfileSchema as JSONSchemaType<PersonalityProfile>);
 
 export function isValidPersonalityProfile(profile: PersonalityProfile): boolean {
     return validate(profile) as boolean;
