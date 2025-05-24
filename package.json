@@ -3,7 +3,7 @@
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^9.27.0",
-    "vitest": "^1.2.2"
+    "vitest": "^1.6.1"
   },
   "scripts": {
     "lint": "eslint 'src/**/*.{js,ts}'",
