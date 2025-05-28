@@ -8,7 +8,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "vitest": "latest",
+    "vitest": "^3.1.4",
     "zod": "latest"
   }
 }

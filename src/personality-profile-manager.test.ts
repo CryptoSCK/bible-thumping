@@ -59,7 +59,7 @@ describe('PersonalityProfileManager', () => {
 
     expect(updatedProfile.name).toBe('Updated Disciple');
     expect(updatedProfile.traits).toEqual(['wise']);
-    expect(updatedProfile.updatedAt).not.toEqual(profile.createdAt);
+    expect(updatedProfile.updatedAt.getTime()).toBeGreaterThan(profile.createdAt.getTime());
   });
 
   it('should delete a profile', () => {
