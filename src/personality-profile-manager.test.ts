@@ -8,6 +8,8 @@ describe('PersonalityProfileManager', () => {
     profileManager = new PersonalityProfileManager();
   });
 
+  const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
   it('should create a personality profile', () => {
     const profile = profileManager.createProfile({
       name: 'Test Disciple',
@@ -46,11 +48,14 @@ describe('PersonalityProfileManager', () => {
       .toThrow('Profile with ID non-existent-id not found');
   });
 
-  it('should update an existing profile', () => {
+  it('should update an existing profile', async () => {
     const profile = profileManager.createProfile({
       name: 'Original Disciple',
       tone: 'serious'
     });
+
+    // Wait a bit to ensure time difference
+    await wait(10);
 
     const updatedProfile = profileManager.updateProfile(profile.id, {
       name: 'Updated Disciple',
